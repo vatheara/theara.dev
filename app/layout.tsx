@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
-import LocalFont from "@next/font/local";
-import { Inter } from "@next/font/google";
+import LocalFont from "next/font/local";
+import { Inter } from "next/font/google";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
