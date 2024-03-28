@@ -38,12 +38,12 @@ export default function Home() {
           I&apos;m building{" "}
           <Link
             target="_blank"
-            href="https://unkey.dev"
+            href="https://chat.domnossrai.com/"
             className="underline duration-500 hover:text-zinc-300"
           >
-            unkey.dev
+            KhmerGPT
           </Link>{" "}
-          to solve API authentication and authorization for developers.
+          to deliver the benefits of AI for humanity.
         </h2>
       </div>
     </div>
