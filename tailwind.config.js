@@ -107,4 +107,8 @@ module.exports = {
 	},
   darkMode: "class",
   plugins: [nextui()],
+   corePlugins: {
+    transitionProperty: true,
+    transitionDuration: true,
+  }
 }
