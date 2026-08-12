@@ -1,11 +1,9 @@
 ---
-import { Image } from 'astro:assets';
-import khmergptLogo from '@/assets/logo/khmergpt.png';
-
 interface Props {
   title?: string;
   description?: string;
   href?: string;
+  logo?: string;
   tags?: { label: string; variant?: 'default' | 'primary' | 'success' }[];
 }
 
@@ -13,6 +11,7 @@ const {
   title = 'KhmerGPT',
   description = 'Discover & Share with AI-powered Tools',
   href = 'https://chat.domnossrai.com/',
+  logo = '/assets/logo/khmergpt.png',
   tags = [
     { label: 'free', variant: 'default' },
     { label: 'PWA', variant: 'primary' },
@@ -24,7 +23,7 @@ const {
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class="group relative block w-full rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-900/80 hover:shadow-2xl hover:shadow-zinc-950/80 sm:p-8"
+  class="group relative block w-full rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-900/90 hover:shadow-2xl hover:shadow-zinc-950/80 sm:p-8"
 >
   <!-- Ambient subtle gradient glow on hover -->
   <div
@@ -35,15 +34,16 @@ const {
   <div class="relative flex flex-col sm:flex-row sm:items-center gap-6">
     <!-- App Logo with rounded frame -->
     <div
-      class="flex h-24 w-24 sm:h-28 sm:w-28 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/70 p-2 shadow-inner group-hover:border-zinc-700 transition-colors duration-300"
+      class="flex h-24 w-24 sm:h-28 sm:w-28 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/80 p-2 shadow-inner group-hover:border-zinc-700 transition-colors duration-300"
     >
-      <Image
-        src={khmergptLogo}
+      <img
+        src={logo}
         alt={title}
-        width={112}
-        height={112}
+        width="112"
+        height="112"
         class="h-full w-full object-contain rounded-xl transition-transform duration-300 group-hover:scale-105"
         loading="eager"
+        decoding="async"
       />
     </div>
 
