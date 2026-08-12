@@ -1,0 +1,71 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Particles from '@/components/Particles.astro';
+
+const navigation = [
+  { name: 'Apps', href: '/apps' },
+];
+---
+
+<Layout title="theara.dev" description="founder of KhmerGPT">
+  <main class="relative flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
+    <!-- Top Navigation -->
+    <nav class="my-16 animate-fade-in z-20">
+      <ul class="flex items-center justify-center gap-6">
+        {
+          navigation.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-sm font-medium tracking-wide text-zinc-400 hover:text-zinc-100 transition-colors duration-300 px-3 py-1.5 rounded-full hover:bg-zinc-800/50 backdrop-blur-sm"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Top Glowing Line -->
+    <div
+      class="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0"
+    >
+    </div>
+
+    <!-- Particle Background -->
+    <Particles
+      className="absolute inset-0 -z-10 animate-fade-in"
+      quantity={100}
+    />
+
+    <!-- Main Title -->
+    <h1
+      class="z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text select-none drop-shadow-sm"
+    >
+      theara
+    </h1>
+
+    <!-- Bottom Glowing Line -->
+    <div
+      class="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0"
+    >
+    </div>
+
+    <!-- Subtitle / Bio -->
+    <div class="my-16 text-center animate-fade-in z-20 px-4 max-w-md">
+      <h2 class="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+        I'm building{' '}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://chat.domnossrai.com/"
+          class="font-medium text-zinc-200 underline underline-offset-4 decoration-zinc-500 hover:decoration-zinc-200 transition-all duration-300 hover:text-white"
+        >
+          KhmerGPT
+        </a>{' '}
+        to deliver the benefits of AI for humanity.
+      </h2>
+    </div>
+  </main>
+</Layout>

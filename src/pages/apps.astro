@@ -1,0 +1,68 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import AppItem from '@/components/AppItem.astro';
+import Particles from '@/components/Particles.astro';
+---
+
+<Layout title="Apps" description="Quality crafted apps by theara.dev">
+  <div class="relative min-h-screen bg-gradient-to-tl from-black via-zinc-900/30 to-black overflow-x-hidden">
+    <!-- Particle Background -->
+    <Particles
+      className="fixed inset-0 -z-10 opacity-60"
+      quantity={60}
+    />
+
+    <!-- Main Content Container -->
+    <main class="container mx-auto max-w-4xl px-6 py-16 sm:py-24">
+      <!-- Back to Home Link -->
+      <div class="mb-12">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-200 group"
+        >
+          <svg
+            class="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span>Back to home</span>
+        </a>
+      </div>
+
+      <!-- Page Header -->
+      <header class="mb-12 text-center sm:text-left space-y-4 animate-fade-in">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white font-display">
+          Quality crafted apps
+        </h1>
+        <p class="text-base sm:text-lg text-zinc-400 max-w-xl">
+          A showcase of products and tools designed to deliver the power of AI to everyday users.
+        </p>
+      </header>
+
+      <!-- Glowing Divider -->
+      <div class="h-px w-full bg-gradient-to-r from-zinc-500/0 via-zinc-500/40 to-zinc-500/0 my-8"></div>
+
+      <!-- Apps List -->
+      <section class="space-y-6 pt-4 animate-fade-in">
+        <AppItem
+          title="KhmerGPT"
+          description="Discover & Share with AI-powered Tools"
+          href="https://chat.domnossrai.com/"
+          tags={[
+            { label: 'free', variant: 'default' },
+            { label: 'PWA', variant: 'primary' },
+          ]}
+        />
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-24 pt-8 text-center text-xs text-zinc-600 border-t border-zinc-900">
+        <p>© {new Date().getFullYear()} theara.dev. All rights reserved.</p>
+      </footer>
+    </main>
+  </div>
+</Layout>
