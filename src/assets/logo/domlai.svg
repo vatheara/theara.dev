@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dl-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="50%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="dl-border-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#2dd4bf" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.85" />
+    </radialGradient>
+    <radialGradient id="dl-ambient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.25" />
+      <stop offset="60%" stop-color="#06b6d4" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="dl-top-face" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.15" />
+    </linearGradient>
+    <linearGradient id="dl-left-face" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d9488" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#042f2e" stop-opacity="0.3" />
+    </linearGradient>
+    <linearGradient id="dl-right-face" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#083344" stop-opacity="0.3" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="#09090b" />
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="none" stroke="url(#dl-border-gradient)" stroke-width="6" />
+
+  <!-- Ambient Glow -->
+  <circle cx="256" cy="256" r="180" fill="url(#dl-ambient)" />
+
+  <!-- Isometric Box Faces -->
+  <!-- Top Face -->
+  <polygon points="256,110 380,182 256,254 132,182" fill="url(#dl-top-face)" />
+  
+  <!-- Left Face -->
+  <polygon points="132,182 256,254 256,402 132,330" fill="url(#dl-left-face)" />
+  
+  <!-- Right Face -->
+  <polygon points="256,254 380,182 380,330 256,402" fill="url(#dl-right-face)" />
+
+  <!-- Isometric Box Wireframe Edges -->
+  <g stroke="url(#dl-border-gradient)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Outer Contour -->
+    <polygon points="256,110 380,182 380,330 256,402 132,330 132,182" />
+    <!-- Interior Seams from Center -->
+    <line x1="256" y1="254" x2="256" y2="402" />
+    <line x1="256" y1="254" x2="132" y2="182" />
+    <line x1="256" y1="254" x2="380" y2="182" />
+  </g>
+
+  <!-- Retail / Price Tag Accent Lines -->
+  <g stroke="url(#dl-border-gradient)" stroke-width="6" stroke-linecap="round" opacity="0.8">
+    <line x1="200" y1="230" x2="230" y2="247" />
+    <line x1="282" y1="247" x2="312" y2="230" />
+  </g>
+</svg>

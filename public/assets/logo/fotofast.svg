@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ff-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="ff-border-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#60a5fa" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0.8" />
+    </linearGradient>
+    <radialGradient id="ff-ambient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25" />
+      <stop offset="60%" stop-color="#10b981" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="#09090b" />
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="none" stroke="url(#ff-border-gradient)" stroke-width="6" />
+
+  <!-- Ambient Glow Behind Aperture -->
+  <circle cx="256" cy="256" r="180" fill="url(#ff-ambient)" />
+
+  <!-- Outer Shutter Ring -->
+  <circle cx="256" cy="256" r="140" fill="none" stroke="url(#ff-gradient)" stroke-width="16" stroke-linecap="round" />
+
+  <!-- Inner Iris Core -->
+  <circle cx="256" cy="256" r="48" fill="none" stroke="url(#ff-gradient)" stroke-width="14" />
+  <circle cx="256" cy="256" r="22" fill="url(#ff-gradient)" />
+
+  <!-- Shutter / Aperture Blades & Focus Rays -->
+  <g stroke="url(#ff-gradient)" stroke-width="14" stroke-linecap="round">
+    <!-- Orthogonal -->
+    <line x1="256" y1="116" x2="256" y2="162" />
+    <line x1="256" y1="350" x2="256" y2="396" />
+    <line x1="116" y1="256" x2="162" y2="256" />
+    <line x1="350" y1="256" x2="396" y2="256" />
+    <!-- Diagonal Aperture Rays -->
+    <line x1="157" y1="157" x2="189" y2="189" />
+    <line x1="323" y1="323" x2="355" y2="355" />
+    <line x1="157" y1="355" x2="189" y2="323" />
+    <line x1="323" y1="189" x2="355" y2="157" />
+  </g>
+
+  <!-- Biometric Corner Face Frame Accents -->
+  <g stroke="url(#ff-border-gradient)" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.85">
+    <!-- Top-Left -->
+    <path d="M 72 120 L 72 80 L 120 80" />
+    <!-- Top-Right -->
+    <path d="M 440 120 L 440 80 L 392 80" />
+    <!-- Bottom-Left -->
+    <path d="M 72 392 L 72 432 L 120 432" />
+    <!-- Bottom-Right -->
+    <path d="M 440 392 L 440 432 L 392 432" />
+  </g>
+</svg>
