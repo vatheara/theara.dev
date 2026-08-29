@@ -1,0 +1,77 @@
+---
+interface Props {
+  email?: string;
+  className?: string;
+}
+
+const { email = 'theara2048@gmail.com', className = '' } = Astro.props;
+---
+
+<div class:list={['inline-flex items-center gap-2 copy-email-container', className]}>
+  <button
+    type="button"
+    class="copy-email-btn inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium text-zinc-300 bg-zinc-900/80 hover:bg-zinc-800 hover:text-white border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all duration-200 shadow-sm active:scale-95 group cursor-pointer"
+    data-email={email}
+    aria-label="Copy email address to clipboard"
+  >
+    <svg
+      class="copy-icon h-4 w-4 text-zinc-400 group-hover:text-zinc-200 transition-colors"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <svg
+      class="check-icon hidden h-4 w-4 text-emerald-400"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span class="btn-text">{email}</span>
+  </button>
+</div>
+
+<script>
+  function setupCopyEmail() {
+    document.querySelectorAll<HTMLButtonElement>('.copy-email-btn').forEach((btn) => {
+      if (btn.dataset.initialized === 'true') return;
+      btn.dataset.initialized = 'true';
+
+      btn.addEventListener('click', async () => {
+        const email = btn.dataset.email || 'theara2048@gmail.com';
+        const copyIcon = btn.querySelector('.copy-icon');
+        const checkIcon = btn.querySelector('.check-icon');
+        const btnText = btn.querySelector('.btn-text');
+
+        try {
+          await navigator.clipboard.writeText(email);
+          if (copyIcon && checkIcon && btnText) {
+            copyIcon.classList.add('hidden');
+            checkIcon.classList.remove('hidden');
+            const originalText = btnText.textContent;
+            btnText.textContent = 'Copied to clipboard!';
+            btn.classList.add('border-emerald-500/50', 'bg-emerald-950/30', 'text-emerald-300');
+
+            setTimeout(() => {
+              copyIcon.classList.remove('hidden');
+              checkIcon.classList.add('hidden');
+              btnText.textContent = originalText;
+              btn.classList.remove('border-emerald-500/50', 'bg-emerald-950/30', 'text-emerald-300');
+            }, 2000);
+          }
+        } catch (err) {
+          window.location.href = `mailto:${email}`;
+        }
+      });
+    });
+  }
+
+  setupCopyEmail();
+  document.addEventListener('astro:page-load', setupCopyEmail);
+</script>

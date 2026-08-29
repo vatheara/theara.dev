@@ -1,0 +1,44 @@
+---
+import { siteConfig } from '@/data/site';
+---
+
+<footer class="mt-20 border-t border-zinc-900/80 py-10 text-center text-xs text-zinc-500">
+  <div class="container mx-auto max-w-4xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span>{siteConfig.status.message}</span>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <a
+        href={siteConfig.links.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-zinc-300 transition-colors"
+      >
+        GitHub
+      </a>
+      <a
+        href={siteConfig.links.twitter}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-zinc-300 transition-colors"
+      >
+        X / Twitter
+      </a>
+      <a
+        href={`mailto:${siteConfig.links.email}`}
+        class="hover:text-zinc-300 transition-colors"
+      >
+        Email
+      </a>
+    </div>
+
+    <div>
+      <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

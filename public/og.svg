@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#18181b" />
+      <stop offset="60%" stop-color="#09090b" />
+      <stop offset="100%" stop-color="#000000" />
+    </radialGradient>
+    <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#a1a1aa" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-grad)" />
+
+  <!-- Stars / Particles Accent -->
+  <circle cx="200" cy="150" r="2" fill="#ffffff" opacity="0.4" />
+  <circle cx="350" cy="220" r="1.5" fill="#ffffff" opacity="0.6" />
+  <circle cx="850" cy="180" r="2.5" fill="#ffffff" opacity="0.3" />
+  <circle cx="1000" cy="280" r="1.8" fill="#ffffff" opacity="0.5" />
+  <circle cx="150" cy="480" r="2.2" fill="#ffffff" opacity="0.4" />
+  <circle cx="920" cy="450" r="1.5" fill="#ffffff" opacity="0.5" />
+  <circle cx="700" cy="520" r="2" fill="#ffffff" opacity="0.3" />
+
+  <!-- Glowing Line Top -->
+  <rect x="200" y="190" width="800" height="1" fill="url(#line-grad)" />
+
+  <!-- Main Name -->
+  <text x="600" y="300" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="96" fill="url(#text-grad)" letter-spacing="4">theara.dev</text>
+
+  <!-- Glowing Line Bottom -->
+  <rect x="200" y="340" width="800" height="1" fill="url(#line-grad)" />
+
+  <!-- Subtitle -->
+  <text x="600" y="410" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="400" font-size="28" fill="#a1a1aa">Founder of KhmerGPT • FotoFast • Domlai</text>
+  <text x="600" y="460" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="300" font-size="20" fill="#71717a">Delivering the benefits of AI to humanity</text>
+
+  <!-- Bottom Badge -->
+  <rect x="500" y="520" width="200" height="36" rx="18" fill="#27272a" stroke="#3f3f46" stroke-width="1" />
+  <circle cx="524" cy="538" r="4" fill="#34d399" />
+  <text x="610" y="544" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#e4e4e7">Available for Projects</text>
+</svg>

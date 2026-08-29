@@ -1,0 +1,58 @@
+---
+interface Props {
+  className?: string;
+  as?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  className = '',
+  as: Element = 'div',
+  href,
+  target,
+  rel,
+} = Astro.props;
+---
+
+<Element
+  href={href}
+  target={target}
+  rel={rel}
+  class:list={[
+    'spotlight-card group relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-6 sm:p-8 backdrop-blur-xl transition-all duration-300 hover:border-zinc-700/90 hover:bg-zinc-900/70',
+    className,
+  ]}
+>
+  <!-- Spotlight highlight -->
+  <div
+    class="spotlight-glow pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+    style="background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 40%);"
+  >
+  </div>
+
+  <div class="relative z-10">
+    <slot />
+  </div>
+</Element>
+
+<script>
+  function setupSpotlight() {
+    document.querySelectorAll<HTMLElement>('.spotlight-card').forEach((card) => {
+      if (card.dataset.spotlightInit === 'true') return;
+      card.dataset.spotlightInit = 'true';
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  }
+
+  setupSpotlight();
+  document.addEventListener('astro:page-load', setupSpotlight);
+</script>

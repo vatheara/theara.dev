@@ -1,0 +1,60 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import AppItem from '@/components/AppItem.astro';
+import Particles from '@/components/Particles.astro';
+import { projects } from '@/data/projects';
+---
+
+<Layout title="Projects & Apps" description="Showcase of AI-powered tools and software crafted by theara.dev">
+  <div class="relative min-h-screen bg-gradient-to-tl from-black via-zinc-950/40 to-black flex flex-col justify-between">
+    <!-- Particle Background -->
+    <Particles
+      className="fixed inset-0 -z-10 opacity-50"
+      quantity={60}
+    />
+
+    <!-- Universal Navigation Header -->
+    <Header showBackButton={true} />
+
+    <!-- Main Content Container -->
+    <main class="container mx-auto max-w-4xl px-6 py-8 sm:py-12 flex-1">
+      <!-- Page Header -->
+      <header class="mb-10 text-center sm:text-left space-y-4 animate-fade-in">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-zinc-900 border border-zinc-800 text-zinc-400">
+          <span>Showcase</span>
+          <span class="text-zinc-600">•</span>
+          <span class="text-zinc-300">{projects.length} Products Live</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white font-display">
+          Projects & Apps
+        </h1>
+        <p class="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed">
+          A showcase of products and tools designed to deliver the power of artificial intelligence and edge computing to everyday users.
+        </p>
+      </header>
+
+      <!-- Apps List -->
+      <section class="space-y-6 animate-fade-in">
+        {
+          projects.map((project) => (
+            <AppItem
+              project={project}
+              title={project.title}
+              description={project.description}
+              href={project.href}
+              logo={project.logo}
+              tags={project.tags}
+              stats={project.stats}
+              status={project.status}
+            />
+          ))
+        }
+      </section>
+    </main>
+
+    <!-- Universal Footer -->
+    <Footer />
+  </div>
+</Layout>

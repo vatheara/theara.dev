@@ -8,7 +8,7 @@ interface Props {
 
 const {
   className = '',
-  quantity = 100,
+  quantity = 80,
   staticity = 50,
   ease = 50,
 } = Astro.props;
@@ -21,14 +21,13 @@ const {
   data-ease={ease}
   aria-hidden="true"
 >
-  <canvas class="particles-canvas w-full h-full"></canvas>
+  <canvas class="particles-canvas w-full h-full block pointer-events-none"></canvas>
 </div>
 
 <script>
   function setupParticles() {
     const containers = document.querySelectorAll<HTMLDivElement>('.particles-wrapper');
     containers.forEach((container) => {
-      // Avoid duplicate initialization on the same container
       if (container.dataset.initialized === 'true') return;
       container.dataset.initialized = 'true';
 
@@ -38,15 +37,16 @@ const {
       const context = canvas.getContext('2d');
       if (!context) return;
 
-      const quantity = parseInt(container.dataset.quantity || '100', 10);
+      const quantity = parseInt(container.dataset.quantity || '80', 10);
       const staticity = parseInt(container.dataset.staticity || '50', 10);
       const ease = parseInt(container.dataset.ease || '50', 10);
 
-      const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+      const dpr = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 2) : 1;
       let w = container.offsetWidth || window.innerWidth;
       let h = container.offsetHeight || window.innerHeight;
       const mouse = { x: 0, y: 0 };
-      let mousePos = { x: 0, y: 0 };
+      let isVisible = true;
+      let animationId: number;
 
       interface Circle {
         x: number;
@@ -69,9 +69,9 @@ const {
           y: Math.floor(Math.random() * (h || window.innerHeight || 600)),
           translateX: 0,
           translateY: 0,
-          size: Math.floor(Math.random() * 2) + 0.2,
+          size: Math.floor(Math.random() * 2) + 0.3,
           alpha: 0,
-          targetAlpha: parseFloat((Math.random() * 0.6 + 0.1).toFixed(1)),
+          targetAlpha: parseFloat((Math.random() * 0.5 + 0.15).toFixed(2)),
           dx: (Math.random() - 0.5) * 0.2,
           dy: (Math.random() - 0.5) * 0.2,
           magnetism: 0.1 + Math.random() * 4,
@@ -103,19 +103,21 @@ const {
       };
 
       const onMouseMove = (e: MouseEvent) => {
-        mousePos = { x: e.clientX, y: e.clientY };
         const rect = canvas.getBoundingClientRect();
-        const x = mousePos.x - rect.left - w / 2;
-        const y = mousePos.y - rect.top - h / 2;
+        const x = e.clientX - rect.left - w / 2;
+        const y = e.clientY - rect.top - h / 2;
         if (x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2) {
           mouse.x = x;
           mouse.y = y;
         }
       };
 
-      let animationId: number;
-
       const animate = () => {
+        if (!isVisible) {
+          animationId = requestAnimationFrame(animate);
+          return;
+        }
+
         context.clearRect(0, 0, w, h);
         for (let i = 0; i < circles.length; i++) {
           const circle = circles[i];
@@ -156,14 +158,20 @@ const {
       resizeCanvas();
       animate();
 
+      const onVisibilityChange = () => {
+        isVisible = !document.hidden;
+      };
+
       window.addEventListener('resize', resizeCanvas);
       window.addEventListener('mousemove', onMouseMove, { passive: true });
+      document.addEventListener('visibilitychange', onVisibilityChange);
 
       document.addEventListener(
         'astro:before-swap',
         () => {
           window.removeEventListener('resize', resizeCanvas);
           window.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('visibilitychange', onVisibilityChange);
           cancelAnimationFrame(animationId);
         },
         { once: true }

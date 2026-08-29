@@ -1,93 +1,123 @@
 ---
+import type { Project } from '@/types';
+import SpotlightCard from '@/components/SpotlightCard.astro';
+
 interface Props {
+  project?: Project;
   title?: string;
   description?: string;
   href?: string;
   logo?: string;
-  tags?: { label: string; variant?: 'default' | 'primary' | 'success' }[];
+  tags?: { label: string; variant?: 'default' | 'primary' | 'success' | 'warning' | 'purple' }[];
+  stats?: { label: string; value: string }[];
+  category?: string;
+  status?: string;
 }
 
 const {
-  title = 'KhmerGPT',
-  description = 'Discover & Share with AI-powered Tools',
-  href = 'https://chat.domnossrai.com/',
-  logo = '/assets/logo/khmergpt.png',
-  tags = [
-    { label: 'free', variant: 'default' },
-    { label: 'PWA', variant: 'primary' },
+  project,
+  title = project?.title || 'KhmerGPT',
+  description = project?.description || 'Discover & Share with AI-powered Tools',
+  href = project?.href || 'https://chat.domnossrai.com/',
+  logo = project?.logo || '/assets/logo/khmergpt.png',
+  tags = project?.tags || [
+    { label: 'Free to use', variant: 'success' },
+    { label: 'PWA', variant: 'purple' },
   ],
+  stats = project?.stats,
+  category = project?.category,
+  status = project?.status || 'Live',
 } = Astro.props;
 ---
 
-<a
+<SpotlightCard
+  as="a"
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class="group relative block w-full rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-900/90 hover:shadow-2xl hover:shadow-zinc-950/80 sm:p-8"
+  className="block transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-zinc-950/80"
 >
-  <!-- Ambient subtle gradient glow on hover -->
-  <div
-    class="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-r from-zinc-700/20 via-zinc-500/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-  >
-  </div>
-
-  <div class="relative flex flex-col sm:flex-row sm:items-center gap-6">
-    <!-- App Logo with rounded frame -->
+  <div class="flex flex-col md:flex-row md:items-start gap-6">
+    <!-- App Logo Frame -->
     <div
-      class="flex h-24 w-24 sm:h-28 sm:w-28 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/80 p-2 shadow-inner group-hover:border-zinc-700 transition-colors duration-300"
+      class="flex h-20 w-20 sm:h-24 sm:w-24 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/90 p-3 shadow-inner group-hover:border-zinc-700 transition-colors duration-300"
     >
       <img
         src={logo}
-        alt={title}
-        width="112"
-        height="112"
+        alt={`${title} logo`}
+        width="96"
+        height="96"
         class="h-full w-full object-contain rounded-xl transition-transform duration-300 group-hover:scale-105"
         loading="eager"
         decoding="async"
       />
     </div>
 
-    <!-- App Info -->
-    <div class="flex flex-1 flex-col justify-between space-y-3">
-      <div class="space-y-1.5">
-        <div class="flex items-center justify-between">
-          <h3
-            class="text-2xl sm:text-3xl font-bold tracking-tight text-white transition-colors duration-200 group-hover:text-zinc-100"
-          >
-            {title}
-          </h3>
-          <!-- External Link Icon -->
-          <svg
-            class="h-5 w-5 text-zinc-500 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-zinc-200"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-            ></path>
-          </svg>
+    <!-- App Info Details -->
+    <div class="flex flex-1 flex-col justify-between space-y-4">
+      <div class="space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-3">
+            <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white transition-colors duration-200 group-hover:text-zinc-100 font-display">
+              {title}
+            </h3>
+            {
+              status && (
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-950/70 text-emerald-400 border border-emerald-800/40">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                  {status}
+                </span>
+              )
+            }
+          </div>
+
+          <!-- Launch Button / External Arrow -->
+          <div class="inline-flex items-center gap-1 text-xs font-semibold text-zinc-400 group-hover:text-white transition-colors bg-zinc-800/50 hover:bg-zinc-800 px-3 py-1 rounded-full border border-zinc-700/50">
+            <span>Launch</span>
+            <svg
+              class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </div>
         </div>
-        <p class="text-base sm:text-lg text-zinc-400 leading-relaxed">
+
+        <p class="text-sm sm:text-base text-zinc-300 leading-relaxed font-normal">
           {description}
         </p>
       </div>
 
-      <!-- Badges -->
+      <!-- Highlights / Stats strip (if available) -->
+      {
+        stats && stats.length > 0 && (
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 py-2 border-y border-zinc-800/60 text-xs">
+            {stats.map((s) => (
+              <div>
+                <span class="text-zinc-500 block text-[10px] uppercase tracking-wider">{s.label}</span>
+                <span class="font-medium text-zinc-300">{s.value}</span>
+              </div>
+            ))}
+          </div>
+        )
+      }
+
+      <!-- Badges / Tags -->
       <div class="flex flex-wrap items-center gap-2 pt-1">
         {
           tags.map((tag) => (
             <span
-              class={`inline-flex items-center rounded-full px-3 py-0.5 text-xs font-semibold tracking-wide uppercase ${
-                tag.variant === 'primary'
-                  ? 'bg-blue-950/60 text-blue-400 border border-blue-800/50'
-                  : tag.variant === 'success'
-                  ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-800/50'
-                  : 'bg-zinc-800/80 text-zinc-300 border border-zinc-700/50'
-              }`}
+              class:list={[
+                'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium tracking-wide',
+                tag.variant === 'primary' && 'bg-blue-950/60 text-blue-300 border border-blue-800/50',
+                tag.variant === 'success' && 'bg-emerald-950/60 text-emerald-300 border border-emerald-800/50',
+                tag.variant === 'purple' && 'bg-purple-950/60 text-purple-300 border border-purple-800/50',
+                tag.variant === 'warning' && 'bg-amber-950/60 text-amber-300 border border-amber-800/50',
+                (!tag.variant || tag.variant === 'default') && 'bg-zinc-800/80 text-zinc-300 border border-zinc-700/50',
+              ]}
             >
               {tag.label}
             </span>
@@ -96,4 +126,4 @@ const {
       </div>
     </div>
   </div>
-</a>
+</SpotlightCard>

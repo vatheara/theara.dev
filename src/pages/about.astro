@@ -1,0 +1,184 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Particles from '@/components/Particles.astro';
+import SpotlightCard from '@/components/SpotlightCard.astro';
+import { skillCategories } from '@/data/skills';
+import { experiences } from '@/data/experience';
+import { siteConfig } from '@/data/site';
+---
+
+<Layout title="About" description="About Theara — Software engineer, AI product builder, and founder of KhmerGPT.">
+  <div class="relative min-h-screen bg-gradient-to-tl from-black via-zinc-950/40 to-black flex flex-col justify-between">
+    <!-- Particle Background -->
+    <Particles
+      className="fixed inset-0 -z-10 opacity-50"
+      quantity={60}
+    />
+
+    <!-- Universal Navigation Header -->
+    <Header showBackButton={true} />
+
+    <!-- Main Content Container -->
+    <main class="container mx-auto max-w-4xl px-6 py-8 sm:py-12 flex-1 space-y-16">
+      <!-- Bio / Intro Section -->
+      <section class="space-y-6 animate-fade-in">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-zinc-900 border border-zinc-800 text-zinc-400">
+          <span>About Me</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white font-display">
+          Building AI products for humans.
+        </h1>
+
+        <div class="prose prose-invert max-w-none text-zinc-300 text-base sm:text-lg leading-relaxed space-y-4 font-light">
+          <p>
+            Hi, I'm <strong class="text-white font-medium">Theara</strong> (Vatheara) — a software engineer and AI product builder. I am the founder of{' '}
+            <a href="https://chat.domnossrai.com/" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4 decoration-zinc-600 hover:decoration-white">KhmerGPT</a>,{' '}
+            <a href="https://fotofast.theara.dev" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4 decoration-zinc-600 hover:decoration-white">FotoFast</a>, and{' '}
+            <a href="https://domlai.app" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4 decoration-zinc-600 hover:decoration-white">Domlai</a>.
+          </p>
+          <p>
+            My mission is to harness the transformative power of modern artificial intelligence and high-performance web technologies to solve real-world problems. Whether that means delivering localized LLM assistants to Khmer speakers, engineering privacy-preserving vector search algorithms for event photos, or building reliable retail SaaS platforms.
+          </p>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+          <div class="p-4 rounded-xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm">
+            <span class="block text-2xl sm:text-3xl font-bold text-white font-display">3+</span>
+            <span class="text-xs text-zinc-400">Production AI & SaaS Apps</span>
+          </div>
+          <div class="p-4 rounded-xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm">
+            <span class="block text-2xl sm:text-3xl font-bold text-white font-display">&lt;150ms</span>
+            <span class="text-xs text-zinc-400">Edge Search Latency</span>
+          </div>
+          <div class="p-4 rounded-xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm">
+            <span class="block text-2xl sm:text-3xl font-bold text-white font-display">100%</span>
+            <span class="text-xs text-zinc-400">Privacy & Performance Focused</span>
+          </div>
+          <div class="p-4 rounded-xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm">
+            <span class="block text-2xl sm:text-3xl font-bold text-emerald-400 font-display">Active</span>
+            <span class="text-xs text-zinc-400">Available for Collaborations</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills & Tech Stack Section -->
+      <section class="space-y-8 animate-fade-in">
+        <div class="space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white font-display">Technical Expertise</h2>
+          <p class="text-sm text-zinc-400">
+            A comprehensive overview of the tools, frameworks, and technologies I use to build scalable products.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {
+            skillCategories.map((category) => (
+              <SpotlightCard className="p-6">
+                <h3 class="text-lg font-bold text-white mb-1 font-display">{category.title}</h3>
+                <p class="text-xs text-zinc-400 mb-4">{category.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-zinc-800/70 text-zinc-200 border border-zinc-700/50 hover:border-zinc-500 transition-colors">
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              </SpotlightCard>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Experience & Journey Timeline -->
+      <section class="space-y-8 animate-fade-in">
+        <div class="space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white font-display">Journey & Products</h2>
+          <p class="text-sm text-zinc-400">
+            Key milestones in designing, building, and deploying software.
+          </p>
+        </div>
+
+        <div class="space-y-6 relative border-l border-zinc-800 pl-6 ml-3 sm:ml-4">
+          {
+            experiences.map((exp) => (
+              <div class="relative group">
+                <!-- Timeline Dot -->
+                <div class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-zinc-900 bg-zinc-500 group-hover:bg-white group-hover:scale-125 transition-all duration-200"></div>
+
+                <div class="space-y-3 p-5 rounded-2xl border border-zinc-800/80 bg-zinc-900/30 hover:border-zinc-700 transition-colors backdrop-blur-sm">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <h3 class="text-lg font-bold text-white font-display">{exp.role}</h3>
+                      <a
+                        href={exp.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-sm text-zinc-400 hover:text-white underline underline-offset-2 decoration-zinc-700 transition-colors"
+                      >
+                        {exp.company} ↗
+                      </a>
+                    </div>
+                    <span class="text-xs font-medium text-zinc-500 px-2.5 py-1 rounded-full bg-zinc-950 border border-zinc-800">
+                      {exp.period}
+                    </span>
+                  </div>
+
+                  <p class="text-sm text-zinc-300 leading-relaxed font-light">{exp.description}</p>
+
+                  {exp.achievements && (
+                    <ul class="space-y-1.5 text-xs text-zinc-400 list-disc list-inside pt-1">
+                      {exp.achievements.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {exp.techStack && (
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                      {exp.techStack.map((tech) => (
+                        <span class="text-[11px] px-2 py-0.5 rounded bg-zinc-800/60 text-zinc-400 border border-zinc-700/40">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Connect Footer Action -->
+      <section class="p-8 rounded-2xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-xl text-center space-y-4">
+        <h2 class="text-2xl font-bold text-white font-display">Let's connect and build something impactful.</h2>
+        <p class="text-sm text-zinc-400 max-w-md mx-auto">
+          Whether you have an inquiry, want to discuss an AI project, or just want to say hi.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <a
+            href="/contact"
+            class="px-5 py-2.5 text-sm font-medium text-white bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-full transition-all duration-200 shadow-md hover:scale-105"
+          >
+            Go to Contact Page
+          </a>
+          <a
+            href={siteConfig.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-2.5 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-full transition-all duration-200"
+          >
+            View GitHub (vatheara)
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Universal Footer -->
+    <Footer />
+  </div>
+</Layout>

@@ -1,14 +1,55 @@
 # theara.dev
 
-Personal portfolio and showcase of AI-powered applications built with [Astro 7](https://astro.build/) and deployed to [Cloudflare Pages](https://pages.cloudflare.com/).
+Personal portfolio, technical showcase, and product hub for **Theara** (Vatheara) — Founder of [KhmerGPT](https://chat.domnossrai.com/), [FotoFast](https://fotofast.theara.dev), and [Domlai](https://domlai.app). Built with [Astro 7](https://astro.build/) and deployed on [Cloudflare Pages](https://pages.cloudflare.com/).
 
-## 🚀 Tech Stack
+## 🚀 Features & Highlights
 
-- **Framework**: [Astro 7](https://astro.build/) (Latest)
-- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/) via `@astrojs/cloudflare` v14 & Wrangler v4
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) via `@tailwindcss/vite`
-- **UI & Animations**: Interactive Canvas Particles, CSS Keyframe Glow & Fade animations
-- **Type Safety**: [TypeScript](https://www.typescriptlang.org/)
+- **Astro 7 + Vite**: Zero-runtime JS for static routes with lightning fast page transitions using `@astrojs/cloudflare` & `astro:transitions`.
+- **Tailwind CSS v4**: Ultra-fast utility styling via `@tailwindcss/vite`.
+- **Interactive Particles**: High-efficiency Canvas particle system with cursor magnetism and lifecycle safety.
+- **Spotlight Cards**: Mouse-following radial glow cards inspired by modern high-craft interfaces.
+- **Showcase & Filter System**: Interactive filtering for AI / ML tools, SaaS products, and open-source projects.
+- **Complete SEO & Open Graph**: Auto-generated `@astrojs/sitemap`, robots.txt, structured JSON-LD schema (Person, WebSite), and high-resolution social preview cards (`og.png`).
+- **Accessible & Responsive**: Keyboard navigable, high-contrast dark theme, and mobile-first design.
+
+## 📁 Project Structure
+
+```text
+theara.dev/
+├── public/
+│   ├── assets/logo/          # App logos (KhmerGPT, FotoFast, Domlai)
+│   ├── fonts/                # CalSans-SemiBold font
+│   ├── _headers              # Cloudflare edge cache & security headers
+│   ├── favicon.ico
+│   ├── og.png & og.svg       # Social preview assets
+│   └── robots.txt
+├── src/
+│   ├── components/
+│   │   ├── AppItem.astro     # Upgraded app showcase card
+│   │   ├── CopyEmail.astro   # Interactive 1-click clipboard copy
+│   │   ├── Footer.astro      # Universal footer with live status
+│   │   ├── Header.astro      # Floating pill navbar
+│   │   ├── Particles.astro   # Canvas particle system
+│   │   └── SpotlightCard.astro # Interactive radial glow card
+│   ├── data/
+│   │   ├── experience.ts     # Career & product journey
+│   │   ├── projects.ts       # Rich project definitions
+│   │   ├── site.ts           # Site config & author details
+│   │   └── skills.ts         # Technical skills & stack
+│   ├── layouts/
+│   │   └── Layout.astro      # Master layout with SEO & JSON-LD
+│   ├── pages/
+│   │   ├── about.astro       # About, skills & product journey
+│   │   ├── apps.astro        # App showcase with live filters
+│   │   ├── contact.astro     # Contact hub & email generator
+│   │   ├── index.astro       # Hero landing page
+│   │   └── projects.astro    # Projects route
+│   ├── styles/
+│   │   └── globals.css       # Tailwind v4 theme & keyframes
+│   └── types/
+│       └── index.ts          # TypeScript interfaces
+└── astro.config.mjs
+```
 
 ## 🛠️ Development
 
@@ -32,7 +73,7 @@ Open [http://localhost:4321](http://localhost:4321) in your browser.
 npm run build
 ```
 
-The output files will be generated in `dist/client/`.
+The output static files and edge assets will be generated in `dist/client/`.
 
 ### 4. Preview Production Build Locally
 
@@ -42,40 +83,15 @@ npm run preview
 
 ## 🌐 Cloudflare Pages Deployment
 
-### Option 1: Direct Wrangler CLI Deployment
-
-You can deploy directly to Cloudflare Pages using the npm scripts:
+Deploy directly via Wrangler CLI:
 
 ```bash
-# Login to Cloudflare (one-time setup)
-npx wrangler login
-
-# Deploy to production
+# Production deploy
 npm run deploy
 
-# Or deploy to preview branch
+# Preview branch deploy
 npm run deploy:preview
 ```
-
-### Option 2: Connect via Cloudflare Dashboard (Git Integration)
-
-1. Go to **Cloudflare Dashboard** > **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**.
-2. Select your repository (`theara.dev`).
-3. Set the build configuration:
-   - **Framework preset**: `Astro`
-   - **Build command**: `npm run build`
-   - **Build output directory**: `dist/client`
-4. Click **Save and Deploy**.
-
-### Option 3: GitHub Actions (Automated CI/CD)
-
-The repository includes a ready-to-use GitHub Actions workflow at [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml).
-
-Add the following GitHub Secrets to your repository (`Settings` > `Secrets and variables` > `Actions`):
-- `CLOUDFLARE_API_TOKEN`: Cloudflare API Token with Pages edit permissions
-- `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare Account ID
-
-Every push to `main` will automatically build and deploy the latest version to Cloudflare Pages.
 
 ## 📄 License
 

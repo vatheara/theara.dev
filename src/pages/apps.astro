@@ -1,88 +1,144 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 import AppItem from '@/components/AppItem.astro';
 import Particles from '@/components/Particles.astro';
+import { projects } from '@/data/projects';
 ---
 
-<Layout title="Apps" description="Quality crafted apps by theara.dev">
-  <div class="relative min-h-screen bg-gradient-to-tl from-black via-zinc-900/30 to-black overflow-x-hidden">
+<Layout title="Apps & Projects" description="Showcase of AI-powered tools and software crafted by theara.dev">
+  <div class="relative min-h-screen bg-gradient-to-tl from-black via-zinc-950/40 to-black flex flex-col justify-between">
     <!-- Particle Background -->
     <Particles
-      className="fixed inset-0 -z-10 opacity-60"
+      className="fixed inset-0 -z-10 opacity-50"
       quantity={60}
     />
 
-    <!-- Main Content Container -->
-    <main class="container mx-auto max-w-4xl px-6 py-16 sm:py-24">
-      <!-- Back to Home Link -->
-      <div class="mb-12">
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-200 group"
-        >
-          <svg
-            class="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-          </svg>
-          <span>Back to home</span>
-        </a>
-      </div>
+    <!-- Universal Navigation Header -->
+    <Header showBackButton={true} />
 
+    <!-- Main Content Container -->
+    <main class="container mx-auto max-w-4xl px-6 py-8 sm:py-12 flex-1">
       <!-- Page Header -->
-      <header class="mb-12 text-center sm:text-left space-y-4 animate-fade-in">
+      <header class="mb-10 text-center sm:text-left space-y-4 animate-fade-in">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-zinc-900 border border-zinc-800 text-zinc-400">
+          <span>Showcase</span>
+          <span class="text-zinc-600">•</span>
+          <span class="text-zinc-300">{projects.length} Products Live</span>
+        </div>
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white font-display">
           Quality crafted apps
         </h1>
-        <p class="text-base sm:text-lg text-zinc-400 max-w-xl">
-          A showcase of products and tools designed to deliver the power of AI to everyday users.
+        <p class="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed">
+          A showcase of products and tools designed to deliver the power of artificial intelligence and edge computing to everyday users.
         </p>
       </header>
 
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-2 mb-8 animate-fade-in" id="category-filters">
+        <button
+          type="button"
+          class="filter-btn active px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-zinc-100 text-zinc-900 cursor-pointer"
+          data-category="all"
+        >
+          All ({projects.length})
+        </button>
+        <button
+          type="button"
+          class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-zinc-900/80 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-zinc-800/80 cursor-pointer"
+          data-category="AI & ML"
+        >
+          AI & Machine Learning
+        </button>
+        <button
+          type="button"
+          class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-zinc-900/80 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-zinc-800/80 cursor-pointer"
+          data-category="SaaS"
+        >
+          SaaS & Retail Ops
+        </button>
+      </div>
+
       <!-- Glowing Divider -->
-      <div class="h-px w-full bg-gradient-to-r from-zinc-500/0 via-zinc-500/40 to-zinc-500/0 my-8"></div>
+      <div class="h-px w-full bg-gradient-to-r from-zinc-500/0 via-zinc-500/30 to-zinc-500/0 mb-8"></div>
 
       <!-- Apps List -->
-      <section class="space-y-6 pt-4 animate-fade-in">
-        <AppItem
-          title="KhmerGPT"
-          description="Discover & Share with AI-powered Tools"
-          href="https://chat.domnossrai.com/"
-          tags={[
-            { label: 'free', variant: 'default' },
-            { label: 'PWA', variant: 'primary' },
-          ]}
-        />
-        <AppItem
-          title="FotoFast"
-          description="Instant event photo retrieval using privacy-first AI face search"
-          href="https://fotofast.theara.dev"
-          logo="/assets/logo/fotofast.svg"
-          tags={[
-            { label: 'AI Search', variant: 'primary' },
-            { label: 'Privacy First', variant: 'success' },
-          ]}
-        />
-        <AppItem
-          title="Domlai"
-          description="Product catalog and price management platform for retail stores"
-          href="https://domlai.app"
-          logo="/assets/logo/domlai.svg"
-          tags={[
-            { label: 'SaaS', variant: 'primary' },
-            { label: 'Retail Ops', variant: 'default' },
-          ]}
-        />
+      <section class="space-y-6 animate-fade-in" id="apps-container">
+        {
+          projects.map((project) => (
+            <div class="app-card-wrapper transition-all duration-300" data-category={project.category}>
+              <AppItem
+                project={project}
+                title={project.title}
+                description={project.description}
+                href={project.href}
+                logo={project.logo}
+                tags={project.tags}
+                stats={project.stats}
+                status={project.status}
+              />
+            </div>
+          ))
+        }
       </section>
 
-      <!-- Footer -->
-      <footer class="mt-24 pt-8 text-center text-xs text-zinc-600 border-t border-zinc-900">
-        <p>© {new Date().getFullYear()} theara.dev. All rights reserved.</p>
-      </footer>
+      <!-- Collaboration CTA Card -->
+      <section class="mt-16 p-8 rounded-2xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-xl text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-white font-display">Have an exciting idea or need AI expertise?</h2>
+          <p class="text-sm text-zinc-400 max-w-lg">
+            I'm always interested in building impactful tools, exploring novel AI architectures, or collaborating on ambitious projects.
+          </p>
+        </div>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-full transition-all duration-200 shadow-md hover:scale-105 whitespace-nowrap"
+        >
+          <span>Get in touch</span>
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </section>
     </main>
+
+    <!-- Universal Footer -->
+    <Footer />
   </div>
 </Layout>
+
+<script>
+  function setupAppFilters() {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('#category-filters .filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('#apps-container .app-card-wrapper');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category || 'all';
+
+        // Update button states
+        filterBtns.forEach((b) => {
+          b.classList.remove('bg-zinc-100', 'text-zinc-900');
+          b.classList.add('bg-zinc-900/80', 'text-zinc-400', 'border', 'border-zinc-800/80');
+        });
+        btn.classList.add('bg-zinc-100', 'text-zinc-900');
+        btn.classList.remove('bg-zinc-900/80', 'text-zinc-400', 'border', 'border-zinc-800/80');
+
+        // Filter cards
+        cards.forEach((card) => {
+          const cardCat = card.dataset.category;
+          if (category === 'all' || cardCat === category) {
+            card.style.display = 'block';
+            card.classList.add('animate-fade-in');
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  setupAppFilters();
+  document.addEventListener('astro:page-load', setupAppFilters);
+</script>
