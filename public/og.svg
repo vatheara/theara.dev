@@ -38,8 +38,8 @@
   <rect x="200" y="340" width="800" height="1" fill="url(#line-grad)" />
 
   <!-- Subtitle -->
-  <text x="600" y="410" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="400" font-size="28" fill="#a1a1aa">Founder of KhmerGPT • FotoFast • Domlai</text>
-  <text x="600" y="460" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="300" font-size="20" fill="#71717a">Delivering the benefits of AI to humanity</text>
+  <text x="600" y="410" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="400" font-size="28" fill="#a1a1aa">Software Engineer &amp; AI Product Builder</text>
+  <text x="600" y="460" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="300" font-size="20" fill="#71717a">Crafting modern web apps and intelligent tools</text>
 
   <!-- Bottom Badge -->
   <rect x="500" y="520" width="200" height="36" rx="18" fill="#27272a" stroke="#3f3f46" stroke-width="1" />

@@ -3,7 +3,7 @@ export const siteConfig = {
   author: 'Vatheara (Theara)',
   title: 'theara.dev — Software Engineer & AI Product Builder',
   description:
-    'Founder of KhmerGPT, FotoFast, and Domlai. Building AI-powered applications and software to deliver the benefits of technology to humanity.',
+    'Software Engineer & AI Product Builder crafting modern web apps and intelligent tools.',
   url: 'https://theara.dev',
   ogImage: 'https://theara.dev/og.png',
   status: {
