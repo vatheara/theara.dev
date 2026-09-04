@@ -118,7 +118,7 @@ import { siteConfig } from '@/data/site';
           </p>
         </div>
 
-        <form id="contact-form" class="space-y-4">
+        <form id="contact-form" class="space-y-4" data-email={siteConfig.links.email}>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-1.5">
               <label for="name" class="block text-xs font-medium text-zinc-300">Your Name</label>
@@ -200,7 +200,8 @@ import { siteConfig } from '@/data/site';
 
       const fullSubject = encodeURIComponent(`[theara.dev] ${subject} - from ${name}`);
       const fullBody = encodeURIComponent(`Hi Theara,\n\n${message}\n\nBest regards,\n${name}`);
-      window.location.href = `mailto:theara2048@gmail.com?subject=${fullSubject}&body=${fullBody}`;
+      const targetEmail = form.dataset.email || 'contact@theara.dev';
+      window.location.href = `mailto:${targetEmail}?subject=${fullSubject}&body=${fullBody}`;
     });
   }
 

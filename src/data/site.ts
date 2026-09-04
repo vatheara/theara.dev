@@ -13,7 +13,7 @@ export const siteConfig = {
   links: {
     github: 'https://github.com/vatheara',
     twitter: 'https://x.com/vatheara',
-    email: 'theara2048@gmail.com',
+    email: 'contact@theara.dev',
     khmergpt: 'https://chat.domnossrai.com/',
     fotofast: 'https://fotofast.theara.dev',
     domlai: 'https://domlai.app',
